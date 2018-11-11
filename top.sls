@@ -1,3 +1,5 @@
 base:
   '*':
     - ssh
+    - terminaltheme
+    - programs
