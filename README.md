@@ -58,6 +58,38 @@ Sitten kokeilin ajaa orjat high stateen.
 
 Kun uusi moduli oli toiminnassa kloonasin varastoni githubiin tekemällä ensin repositorin sinne.
 
+Kopioin myös tämän README.md filun /srv/salt/ alle.
+
+Koska srv hakemistossa tarvitsee pääkäyttäjän oikeuksia niin myös gitillä pitää käyttää sudoa
+
+	sudo git add .
+	sudo git commit -m "First Commit"
+
+	
+	*** Please tell me who you are.
+
+	Run
+	git config --global user.email "you@example.com"
+	git config --global user.name "Your Name"
+
+	to set your account's default identity.
+	Omit --global to set the identity only in this repository.
+
+	fatal: unable to auto-detect email address (got 'root@xubuntu.(none)')
+
+Commit ei toiminut koska en ollut tehnyt lokaalia käyttäjää gittiin.
+
+	git config --global user.email "Niko_hakala_94@hotmail.com"
+	git config --global user.name "Niko Hakala"
+	sudo git commit -m "First Commit"
+	sudo git remote add origin https://github.com/NikoHakala/salt.git
+	sudo git push -u origin master
+
+Sitten poistin /srv/salt hakemiston ja kloonasin sen takaisin githubista.
+
+	sudo rm -r /srv/salt
+	sudo git clone https://github.com/NikoHakala/salt.git
+
 
 
 ## d) Näytä omalla salt-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
