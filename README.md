@@ -94,11 +94,60 @@ Sitten poistin /srv/salt hakemiston ja kloonasin sen takaisin githubista.
 
 ## d) Näytä omalla salt-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
 
+Git logilla näkee kaikki muutokset mitä repositoriin on tehty.
+
+	xubuntu@xubuntu:/srv/salt$ sudo git log
+	commit e19a38e7a03f933e3ecac50d7af836b973c20040 (HEAD -> master, origin/master, origin/HEAD)
+	Author: Niko Hakala <Niko_hakala_92@hotmail.com>
+	Date:   Sun Nov 11 11:18:27 2018 +0000
+	
+	  Updated README
+	
+	commit d6d51bb108ef515a9d026420c2d7ad369974c7a7
+	Author: Niko Hakala <Niko_hakala_92@hotmail.com>
+	Date:   Sun Nov 11 10:59:49 2018 +0000
+	
+	  First Commit
+
+Git diff näyttää mitä tiedostoihin on muutettu viime pullin jälkeen. + on lisäys ja - on poisto
+
+	xubuntu@xubuntu:/srv/salt$ sudo git diff top.sls
+	diff --git a/top.sls b/top.sls
+	index d7d4703..294c0f9 100644
+	--- a/top.sls
+	+++ b/top.sls
+	@@ -1,3 +1,5 @@
+	 base:
+	   '*':
+	     - ssh
+	+    - gitdifftest
+	+
+
+Git blame näyttää kuka on tehnyt muutoksia ja mihin riviin.
+
+	xubuntu@xubuntu:/srv/salt$ sudo git blame top.sls
+	^d6d51bb (Niko Hakala       2018-11-11 10:59:49 +0000 1) base:
+	^d6d51bb (Niko Hakala       2018-11-11 10:59:49 +0000 2)   '*':
+	^d6d51bb (Niko Hakala       2018-11-11 10:59:49 +0000 3)     - ssh
+	00000000 (Not Committed Yet 2018-11-11 11:30:47 +0000 4)     - gitdifftest
+	00000000 (Not Committed Yet 2018-11-11 11:30:47 +0000 5) 
+
 
 ## e) Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset –hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia.
 
+Poistin README.md kokonaan. 
+
+	xubuntu@xubuntu:/srv/salt$ sudo rm README.md 
+	xubuntu@xubuntu:/srv/salt$ sudo git reset --hard
+	HEAD is now at e19a38e Updated README
+
+
 
 ## f) Tee uusi salt-moduli. Voit asentaa ja konfiguroida minkä vain uuden ohjelman: demonin, työpöytäohjelman tai komentokehotteesta toimivan ohjelman. Käytä tarvittaessa ‘find -printf “%T+ %p\n”|sort’ löytääksesi uudet asetustiedostot.
+
+
+
+
 
 # Lähteet
 
