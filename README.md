@@ -1,5 +1,6 @@
 # Palvelinten Hallinta H3
 Tehtävä tehty Xubuntu 18.04 käyttöjärjestelmällä
+
 http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p
 
 ## b) MarkDown. Tee tämän tehtävän raportti MarkDownina. Helpointa on tehdä raportti samaan GitHub-varastoon kuin Salt-modulit. Tiedostoon .md-pääte. Tyhjä rivi tekee kappalejaon, risuaita ‘#’ tekee otsikon, sisennys merkitsee koodinpätkän.
@@ -145,10 +146,56 @@ Poistin README.md kokonaan.
 
 ## f) Tee uusi salt-moduli. Voit asentaa ja konfiguroida minkä vain uuden ohjelman: demonin, työpöytäohjelman tai komentokehotteesta toimivan ohjelman. Käytä tarvittaessa ‘find -printf “%T+ %p\n”|sort’ löytääksesi uudet asetustiedostot.
 
+### Tein tähän tehtävään moduleita ohjelmista ja asetuksista joita käytän kun teen koulutehtäviä.
 
 
+#### Terminaalin asetukset
+
+	sudo mkdir terminaltheme
+
+Muutin jotain terminaalin asetuksia kuten tausta värin kun valitsee tekstiä ja fontti koon.
+
+	find -printf "%T+ %p\n"|sort
+
+Find komennolla löytyi mihin terminaalin asetukset menevät.
+
+	.config/xfce4/terminal/terminalrc
+
+Kopioin asetukset uuteen polkuun /src/salt/terminaltheme
+ 
+	sudo cp /home/xubuntu/xfce4/terminal/terminalrc /srv/salt/terminaltheme/
+
+Sitten tein init.sls tiedoston terminalthemeen
+
+	/home/xubuntu/.config/xfce4/terminal/terminalrc:
+  	  file.managed:
+   	   - source: salt://terminaltheme/terminalrc
+   	   - user: xubuntu
+   	   - group: xubuntu
+   	   - makedirs: True
+
+#### Ohjelmia
+
+	sudo mkdir programs
+
+	xubuntu@xubuntu:/srv/salt/programs$ cat init.sls 
+	inkscape:
+	  pkg.installed
+	
+	curl:
+	  pkg.installed
+	
+	chromium-browser:
+	  pkg.installed
+	
+	leafpad:
+	  pkg.installed
+	
+	git:
+	  pkg.installed
 
 
 # Lähteet
 
 http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p
+
